@@ -24,11 +24,17 @@ class CountdownTimer {
     // this.decOfNum(number, titles);
   }, 1000);
 
+  pad(value) {
+    return String(value).padStart(2, '0');
+  }
+
   timerLeft(time) {
-    const days = Math.floor(time / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-    const secs = Math.floor((time % (1000 * 60)) / 1000);
+    const days = this.pad(Math.floor(time / (1000 * 60 * 60 * 24)));
+    const hours = this.pad(
+      Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+    );
+    const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+    const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
     refs.daysLeft.innerHTML = days;
     refs.hoursLeft.innerHTML = hours;
     refs.minsLeft.innerHTML = mins;
@@ -53,4 +59,3 @@ const Timer = new CountdownTimer({
   selector: '#timer-1',
   targetDate: new Date('Aug 20,2021'),
 });
-
